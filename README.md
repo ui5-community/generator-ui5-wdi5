@@ -1,13 +1,13 @@
-# generator-wdi5 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-ui5-wdi5 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > yeoman generator for wdi5 e2e tests
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-wdi5 using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-ui5-wdi5 using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-wdi5
+npm install -g generator-ui5-wdi5
 ```
 
 Then generate your new project:
@@ -28,9 +28,9 @@ yo wdi5
  © [Volker Buzek](https://github.com/ui5-community/)
 
 
-[npm-image]: https://badge.fury.io/js/generator-wdi5.svg
-[npm-url]: https://npmjs.org/package/generator-wdi5
-[travis-image]: https://travis-ci.com/vobu/generator-wdi5.svg?branch=master
-[travis-url]: https://travis-ci.com/vobu/generator-wdi5
-[daviddm-image]: https://david-dm.org/vobu/generator-wdi5.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/vobu/generator-wdi5
+[npm-image]: https://badge.fury.io/js/generator-ui5-wdi5.svg
+[npm-url]: https://npmjs.org/package/generator-ui5-wdi5
+[travis-image]: https://travis-ci.com/vobu/generator-ui5-wdi5.svg?branch=master
+[travis-url]: https://travis-ci.com/vobu/generator-ui5-wdi5
+[daviddm-image]: https://david-dm.org/vobu/generator-ui5-wdi5.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/vobu/generator-ui5-wdi5
