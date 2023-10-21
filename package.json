@@ -1,6 +1,6 @@
 {
   "name": "generator-ui5-wdi5",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "yeoman generator for wdi5 e2e tests",
   "homepage": "https://github.com/ui5-community/wdi5",
   "author": {
@@ -52,7 +52,10 @@
       "node": true
     },
     "rules": {
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "spaced-comment": "off",
+      "capitalized-comments": "off",
+      "no-unused-expressions": "warn"
     },
     "plugins": [
       "prettier"
