@@ -1,7 +1,6 @@
 const Generator = require("yeoman-generator")
 const chalk = require("chalk")
 const yosay = require("yosay")
-const { execSync } = require("child_process")
 
 const wdi5 = {
   defaults: {
@@ -64,19 +63,32 @@ module.exports = class extends Generator {
     })
   }
 
-  writing() {
-    const configPath = this.props?.configPath || this.options?.configPath || wdi5.defaults.configPath
-    const specs = this.props?.specs || this.options?.specs || wdi5.defaults.specs
+  install() {
+    const configPath = this.destinationPath(this.props?.configPath || this.options?.configPath || wdi5.defaults.configPath)
+    const specs = this.destinationPath(this.props?.specs || this.options?.specs || wdi5.defaults.specs)
     const baseUrl = this.props?.baseUrl || this.options?.baseUrl || wdi5.defaults.baseUrl
 
     process.env.DEBUG && this.log(`Generating wdi5 project with configPath=${configPath}, specs=${specs}, baseUrl=${baseUrl}`)
 
-    const cmd = `npm init wdi5@latest -y -- --configPath ${configPath} --specs ${specs} --baseUrl ${baseUrl}`
+    const cmd = "npm"
+    const args = ["init", "wdi5@latest", "-y", "--"]
+
+    args.push("--configPath")
+    args.push(configPath)
+
+    args.push("--specs")
+    args.push(specs)
+
+    args.push("--baseUrl")
+    args.push(baseUrl)
 
     if (this.options?.ts === true) {
-      cmd.concat(" --ts")
+      args.push("--ts")
     }
 
-    execSync(cmd, { stdio: "inherit" })
+    this.spawnCommandSync(cmd, args, {
+      cwd: this.destinationPath()
+    })
   }
+
 }
