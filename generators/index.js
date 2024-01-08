@@ -5,8 +5,7 @@ const yosay = require("yosay")
 const wdi5 = {
   defaults: {
     configPath: "./webapp/test/e2e/",
-    specs: "./webapp/test/e2e/",
-    baseUrl: "http://localhost:8080"
+    baseUrl: "http://localhost:8080/index.html"
   }
 }
 
@@ -64,11 +63,11 @@ module.exports = class extends Generator {
   }
 
   install() {
-    const configPath = this.destinationPath(this.props?.configPath || this.options?.configPath || wdi5.defaults.configPath)
-    const specs = this.destinationPath(this.props?.specs || this.options?.specs || wdi5.defaults.specs)
+    const configPath = this.props?.configPath || this.options?.configPath || wdi5.defaults.configPath
     const baseUrl = this.props?.baseUrl || this.options?.baseUrl || wdi5.defaults.baseUrl
+    const specs = this.props?.specs || this.options?.specs
 
-    process.env.DEBUG && this.log(`Generating wdi5 project with configPath=${configPath}, specs=${specs}, baseUrl=${baseUrl}`)
+    process.env.DEBUG && this.log(`Generating wdi5 project with configPath=${configPath}, baseUrl=${baseUrl}, specs=${specs}`)
 
     const cmd = "npm"
     const args = ["init", "wdi5@latest", "-y", "--"]
@@ -76,11 +75,13 @@ module.exports = class extends Generator {
     args.push("--configPath")
     args.push(configPath)
 
-    args.push("--specs")
-    args.push(specs)
-
     args.push("--baseUrl")
     args.push(baseUrl)
+
+    if (specs) {
+      args.push("--specs")
+      args.push(specs)
+    }
 
     if (this.options?.ts === true) {
       args.push("--ts")
