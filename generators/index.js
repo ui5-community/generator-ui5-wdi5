@@ -30,12 +30,12 @@ module.exports = class extends Generator {
 
   prompting() {
     // don't prompt if running as sub-gen
-    if (this.options.embedded) {
+    // but do prompt if specifically asked for via --ask-answered
+    if (this.options.embedded && !this.options.askAnswered) {
       return
     }
 
     this.log(yosay(`Welcome to the ${chalk.red("wdi5")} generator!`))
-
     const prompts = [
       {
         type: "input",
