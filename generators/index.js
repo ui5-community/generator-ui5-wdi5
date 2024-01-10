@@ -5,6 +5,7 @@ const yosay = require("yosay")
 const wdi5 = {
   defaults: {
     configPath: "./webapp/test/e2e/",
+    specs: "./webapp/test/e2e/",
     baseUrl: "http://localhost:8080/index.html"
   }
 }
