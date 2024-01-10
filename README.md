@@ -1,9 +1,9 @@
 # generator-ui5-wdi5
 
-[yeoman](https://yeoman.io/) generator for scaffolding [wdi5](https://github.com/ui5-community/wdi5) e2e test configuration and sample tests into a UI5 app.
+[yeoman](https://yeoman.io/) generator for scaffolding [wdi5](https://github.com/ui5-community/wdi5) e2e test configuration and sample tests into a UI5 app.  
 It is designed to be used in conjunction with [`easy-ui5`](https://github.com/SAP/generator-easy-ui5/) and is integrated in the [UI5 JS app](https://github.com/ui5-community/generator-ui5-app)- and the [UI5 TS app](https://github.com/ui5-community/generator-ui5-ts-app)-generator.
 
-Under the hood,  `generator-ui5-wdi5`  wraps [the command `npm init wdi5`](https://github.com/ui5-community/create-wdi5) and provides a prompt-based CLI on top.
+Under the hood, `generator-ui5-wdi5` wraps [the command `npm init wdi5`](https://github.com/ui5-community/create-wdi5) and provides a prompt-based CLI on top.
 
 ```shell
 ┌───────────────────────────┐
@@ -25,8 +25,6 @@ Under the hood,  `generator-ui5-wdi5`  wraps [the command `npm init wdi5`](https
 │                           │
 └───────────────────────────┘
 ```
-
-
 
 ## Usage (with easy-ui5)
 
@@ -51,5 +49,5 @@ $> yo easy-ui5 wdi5
 
 ## License
 
-This work is dual-licensed under [Apache 2.0 and the Derived Beer-ware 🍺 License](LICENSE). 
+This work is dual-licensed under [Apache 2.0 and the Derived Beer-ware 🍺 License](LICENSE).
 The official license will be Apache 2.0 but finally you can choose between one of them if you use this work.
