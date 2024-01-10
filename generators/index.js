@@ -5,6 +5,7 @@ const yosay = require("yosay")
 const wdi5 = {
   defaults: {
     configPath: "./webapp/test/e2e/",
+    specs: "./webapp/test/e2e/",
     baseUrl: "http://localhost:8080/index.html"
   }
 }
@@ -39,19 +40,20 @@ module.exports = class extends Generator {
       {
         type: "input",
         name: "configPath",
-        message: "path to the 'wdio.conf.(j|t)s' file (relative to project root)",
+        message:
+          "path where the config file 'wdio.conf.(j|t)s' file \n  should be stored (relative to UI5 project root)",
         default: wdi5.defaults.configPath
       },
       {
         type: "input",
         name: "specs",
-        message: "path to the test files (relative to project root)",
+        message: "path where the test files should be stored\n  (relative to UI5 project root)",
         default: wdi5.defaults.specs
       },
       {
         type: "input",
         name: "baseUrl",
-        message: "URL of the UI5 app under test",
+        message: "full URL of the UI5 app under test",
         default: wdi5.defaults.baseUrl
       }
     ]
@@ -67,7 +69,8 @@ module.exports = class extends Generator {
     const baseUrl = this.props?.baseUrl || this.options?.baseUrl || wdi5.defaults.baseUrl
     const specs = this.props?.specs || this.options?.specs
 
-    process.env.DEBUG && this.log(`Generating wdi5 project with configPath=${configPath}, baseUrl=${baseUrl}, specs=${specs}`)
+    process.env.DEBUG &&
+      this.log(`Generating wdi5 project with configPath=${configPath}, baseUrl=${baseUrl}, specs=${specs}`)
 
     const cmd = "npm"
     const args = ["init", "wdi5@latest", "-y", "--"]
@@ -91,5 +94,4 @@ module.exports = class extends Generator {
       cwd: this.destinationPath()
     })
   }
-
 }
