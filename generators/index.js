@@ -30,12 +30,12 @@ module.exports = class extends Generator {
 
   prompting() {
     // don't prompt if running as sub-gen
-    if (this.options.embedded) {
+    // but do prompt if specifically asked for via --ask-answered
+    if (this.options.embedded && !this.options.askAnswered) {
       return
     }
 
     this.log(yosay(`Welcome to the ${chalk.red("wdi5")} generator!`))
-
     const prompts = [
       {
         type: "input",
@@ -86,7 +86,9 @@ module.exports = class extends Generator {
       args.push(specs)
     }
 
-    if (this.options?.ts === true) {
+    // if executed as a sub-sub-generator within $> yo easy-ui5 ts-app, we need a means to determine whether we're in TS-land
+    // checking for and existing tsconfig.json in the generated UI5 app is a good indicator for that
+    if (this.options?.ts === true || this.fs.exists(this.destinationPath("tsconfig.json"))) {
       args.push("--ts")
     }
 
