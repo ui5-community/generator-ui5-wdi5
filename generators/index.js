@@ -92,6 +92,15 @@ module.exports = class extends Generator {
       args.push("--ts")
     }
 
+    // if executed as a sub-sub-generator within $> yo easy-ui5 project,
+    // which uses npm workspaces, we need to adjust the destination path for first uimodule accordingly
+    const crossGeneratorConfig = this.readDestinationJSON(".yo-rc.json")
+    if (crossGeneratorConfig["generator-ui5-project"]) {
+      const uimodules = crossGeneratorConfig["generator-ui5-project"]["uimodules"]
+      const uimodule = uimodules[uimodules.length - 1]
+      this.destinationRoot(this.destinationPath(uimodule))
+    }
+
     this.spawnCommandSync(cmd, args, {
       cwd: this.destinationPath()
     })
