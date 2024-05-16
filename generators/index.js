@@ -86,12 +86,6 @@ module.exports = class extends Generator {
       args.push(specs)
     }
 
-    // if executed as a sub-sub-generator within $> yo easy-ui5 ts-app, we need a means to determine whether we're in TS-land
-    // checking for and existing tsconfig.json in the generated UI5 app is a good indicator for that
-    if (this.options?.ts === true || this.fs.exists(this.destinationPath("tsconfig.json"))) {
-      args.push("--ts")
-    }
-
     // if executed as a sub-sub-generator within $> yo easy-ui5 project,
     // which uses npm workspaces, we need to adjust the destination path for latest uimodule accordingly
     const crossGeneratorConfig = this.readDestinationJSON(".yo-rc.json")
@@ -102,6 +96,13 @@ module.exports = class extends Generator {
         uimodule = uimodules[uimodules.length - 1]
       }
       this.destinationRoot(this.destinationPath(uimodule))
+    }
+
+
+    // if executed as a sub-sub-generator within $> yo easy-ui5 ts-app, we need a means to determine whether we're in TS-land
+    // checking for and existing tsconfig.json in the generated UI5 app is a good indicator for that
+    if (this.options?.ts === true || this.fs.exists(this.destinationPath("tsconfig.json"))) {
+      args.push("--ts")
     }
 
     this.spawnCommandSync(cmd, args, {
