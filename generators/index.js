@@ -97,7 +97,10 @@ module.exports = class extends Generator {
     const crossGeneratorConfig = this.readDestinationJSON(".yo-rc.json")
     if (crossGeneratorConfig["generator-ui5-project"]) {
       const uimodules = crossGeneratorConfig["generator-ui5-project"]["uimodules"]
-      const uimodule = uimodules[uimodules.length - 1]
+      let uimodule
+      if (uimodules) {
+        uimodule = uimodules[uimodules.length - 1]
+      }
       this.destinationRoot(this.destinationPath(uimodule))
     }
 
