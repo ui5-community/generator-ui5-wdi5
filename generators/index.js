@@ -94,8 +94,8 @@ module.exports = class extends Generator {
       let uimodule
       if (uimodules) {
         uimodule = uimodules[uimodules.length - 1]
+        this.destinationRoot(this.destinationPath(uimodule))
       }
-      this.destinationRoot(this.destinationPath(uimodule))
     }
 
 
