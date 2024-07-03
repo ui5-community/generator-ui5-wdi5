@@ -86,6 +86,19 @@ module.exports = class extends Generator {
       args.push(specs)
     }
 
+    // if executed as a sub-sub-generator within $> yo easy-ui5 project,
+    // which uses npm workspaces, we need to adjust the destination path for latest uimodule accordingly
+    const crossGeneratorConfig = this.readDestinationJSON(".yo-rc.json")
+    if (crossGeneratorConfig["generator-ui5-project"]) {
+      const uimodules = crossGeneratorConfig["generator-ui5-project"]["uimodules"]
+      let uimodule
+      if (uimodules) {
+        uimodule = uimodules[uimodules.length - 1]
+        this.destinationRoot(this.destinationPath(uimodule))
+      }
+    }
+
+
     // if executed as a sub-sub-generator within $> yo easy-ui5 ts-app, we need a means to determine whether we're in TS-land
     // checking for and existing tsconfig.json in the generated UI5 app is a good indicator for that
     if (this.options?.ts === true || this.fs.exists(this.destinationPath("tsconfig.json"))) {
